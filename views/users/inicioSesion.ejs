@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- head -->
+
+<%- include("./partials/head") %>
+
+    <!-- hoja de estilos -->
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="/css/stylesLogin.css">
+
+
+    <body>
+
+        <!-- header -->
+
+        <%- include("./partials/header") %>
+
+
+            <main>
+                <div class="contenedor-main">
+
+                    <div class="top-main">
+                        <p>Bienvenid@ a HouseClothing!</p>
+
+                        <p>LOG IN</p>
+                    </div>
+
+                    <form action="/usuarios/iniciarsesion" method="POST" class="bottom-main">
+
+                        <div class="campos-de-texto">
+                            
+                            <input name="email" id="email" type="email" placeholder="Email">
+                            
+                            <i id="icono" class="fa-solid fa-circle-exclamation is-invalid"></i>
+                    
+                            <div class="emailErrors is-invalid">
+                                <p id="mensaje"></p>
+                                <p id="mensaje2"></p>
+                                </div>
+                            
+
+                            <% if (locals.errors && errors.email) { %>
+                                <div class="text-danger">
+                                    <%= errors.email.msg %>
+                                    
+                                </div>
+                                
+                                <% } %>
+                        </div>
+
+                        <div class="campos-de-texto">
+                            <input name="contrasena" id="contraseña" type="password" placeholder="Contraseña" 
+                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+
+                            <% if (locals.errors && errors.contrasena) { %>
+                                <div class="text-danger">
+                                    <%= errors.contrasena.msg %>
+                                </div>
+                                <% } %>
+
+                                <div class="mensajeError">
+                                    <p id="minuscula" ></p>
+                                    <p id="mayuscula" ></p>
+                                    <p id="numero" ></p>
+                                    <p id="cantidad"></p>
+                                </div>
+                                
+                        </div>
+                        
+                        
+                        
+                        <div class="botonera">
+                            <label>
+                                <input type="checkbox" name="recordar_email"> Recordar mi usuario
+                            </label>
+
+                        <div class="botonera">
+                            <button type="submit" class="boton1" value="Ingreso">Log in</button>
+                        <a href="#">Olvidaste la contraseña?</a><a href="/usuarios/crearcuenta">No tenes cuenta?</a>
+                    </div>
+                        </div>
+                    </form>
+
+                </div>
+            </main>
+
+            <!-- footer -->
+
+            <%- include("./partials/footer") %>
+    <script src="/js/loginValidation.js"></script>
+    </body>
+
+</html>
